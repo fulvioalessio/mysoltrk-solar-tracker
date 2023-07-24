@@ -24,7 +24,7 @@ unsigned int shuntPointer;
 unsigned int VRefValues[MAX_SAMPLES];
 unsigned int VRefPointer;
 
-void move(int pin, int seconds);
+void move(int pin, int seconds, int shuntMaxValue=MAX_SHUNT_VALUE);
 void resetShuntValues();
 void resetShuntVRef();
 unsigned int getShunt();
@@ -32,7 +32,7 @@ unsigned int getVRef();
 
 void setup()
 {
-    delay(5000);
+    delay(2000);
 
     Serial.begin(9600);
     Serial.println();
@@ -54,8 +54,18 @@ void setup()
     digitalWrite(ACTUATOR_L_PIN1, LOW);
     digitalWrite(ACTUATOR_L_PIN2, LOW);
 
+    Serial.println("Pin setup done");
+    delay(1000);
+
+    Serial.println("Move all actuators to zero position");
+
+    move(ACTUATOR_R_PIN2, MAX_SECONDS_MOVEMENT);
+    delay(2000);
+    move(ACTUATOR_L_PIN2, MAX_SECONDS_MOVEMENT);
+
     Serial.println("Setup complete");
     delay(5000);
+
 }
 
 void loop()
@@ -73,7 +83,7 @@ void loop()
     delay(2000);
 
     Serial.println("Move left actuator to zero position");
-    move(ACTUATOR_L_PIN2, MAX_SECONDS_MOVEMENT);
+    move(ACTUATOR_L_PIN2, MAX_SECONDS_MOVEMENT, MAX_SHUNT_VALUE);
     delay(2000);
 
 }
@@ -82,7 +92,7 @@ void loop()
  *  Do the move, aka: enable a specific pin for n seconds checking shunt & vref
  */
 
-void move(int pin, int seconds)
+void move(int pin, int seconds, int shuntMaxValue)
 {
 unsigned long until = millis() + (unsigned long)(seconds * 1000L);
 unsigned long ignoreShuntUntil = millis() + IGNORE_SHUNT_VREF_FOR_;
@@ -106,7 +116,7 @@ bool dot = false;
         if (millis() > ignoreShuntUntil)
         {
             /*
-             * Now we check sensor values after ignoring the initial start engine due to higher current absorption
+             * We check sensor values after ignoring the initial start engine due to higher current absorption
              */
             if (vref < MIN_VREF_VALUE)
             {
@@ -119,13 +129,16 @@ bool dot = false;
                 delay(500);
                 return;
             }
-            if (shunt > MAX_SHUNT_VALUE)
+            /*
+             * We check shunt value
+             */
+            if (shunt > shuntMaxValue)
             {
                 digitalWrite(pin, LOW);
                 Serial.print("SHUNT ALARM: ");
                 Serial.print(shunt);
                 Serial.print(">");
-                Serial.print(MAX_SHUNT_VALUE);
+                Serial.print(shuntMaxValue);
                 Serial.println(". Stop now");
                 delay(500);
                 return;
