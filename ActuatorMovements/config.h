@@ -1,12 +1,12 @@
 #ifndef __AVR__
-    #error Code in here tested only for AVR
+    #error Tested for AVR only
 #endif
 
 // Arduino nano pins
-#define ACTUATOR_R_PIN1             4
-#define ACTUATOR_R_PIN2             7
-#define ACTUATOR_L_PIN1             6
-#define ACTUATOR_L_PIN2             5
+#define ACTUATOR_R_PIN1             4       // R+
+#define ACTUATOR_R_PIN2             7       // R-
+#define ACTUATOR_L_PIN1             6       // L+
+#define ACTUATOR_L_PIN2             5       // L-
 #define SHUNT_PIN                   18
 #define VREF_PIN                    21
 

@@ -2,6 +2,11 @@
 
 ### A different approach for a solar tracker, alternative movements, to be installed on the outside, to recharge devices
 
+![GitHub stars](https://img.shields.io/github/stars/fulvioalessio/mysoltrk-solar-tracker.svg?label=star)
+![commits](https://badgen.net/github/commits/fulvioalessio/mysoltrk-solar-tracker/main)
+![GitHub latest commit](https://badgen.net/github/last-commit/fulvioalessio/mysoltrk-solar-tracker)
+![maintenance](https://img.shields.io/badge/maintained%3F-yes-green.svg)
+
 
 **Code repository for project published on Hackday.io :** https://hackaday.io/project/190586-mysoltrk-a-solar-tracker-reinvented
 
@@ -38,6 +43,10 @@ We want to install this device outside the windows, balconies, small gardens whe
 
 Code to test the L298N-mini driver and shunt resistor behavior
 
+- SolarTrackerReinvented.ino
+
+This is a working example of solar tracker based on mysoltrk hardware disposition
+
 ## NOTES
 
-- Always use an external power supply
+- Always use an external power supply when you test hardware without an attached panel

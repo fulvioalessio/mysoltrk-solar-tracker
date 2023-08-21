@@ -36,7 +36,7 @@ void setup()
 
     Serial.begin(9600);
     Serial.println();
-    Serial.println("mysoltrk - a solar tracker, reinvented");
+    Serial.println("mysoltrk - a solar tracker, reinvented - (C) 2023 Fulvio Alessio <mysoltrk@gmail.com>");
     Serial.println("Actuators movements and limit switch simulation test");
 
     pinMode(LED_BUILTIN, OUTPUT);
