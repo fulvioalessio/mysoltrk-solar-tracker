@@ -11,7 +11,9 @@
 **Code repository for project published on Hackday.io :** https://hackaday.io/project/190586-mysoltrk-a-solar-tracker-reinvented
 
 <p align="center">
-    <img src="assets/images/logo.png" width="50%" border="1">
+    <img src="assets/images/original-idea.gif" border="1">
+    <br/><br/>
+    <img src="assets/images/timelapse-one-day.gif" border="4" style="color: #333;">
 </p>
 
 We want to create a new, different version of solar tracker, to increase the yield of solar panels.
